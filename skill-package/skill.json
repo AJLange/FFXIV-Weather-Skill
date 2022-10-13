@@ -1,0 +1,35 @@
+{
+  "manifest": {
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:614405134726:function:d64c0b83-a53a-49f7-9e44-d678444882ce:Release_0"
+        },
+        "regions": {
+          "EU": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:eu-west-1:614405134726:function:d64c0b83-a53a-49f7-9e44-d678444882ce:Release_0"
+            }
+          },
+          "NA": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-east-1:614405134726:function:d64c0b83-a53a-49f7-9e44-d678444882ce:Release_0"
+            }
+          },
+          "FE": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-west-2:614405134726:function:d64c0b83-a53a-49f7-9e44-d678444882ce:Release_0"
+            }
+          }
+        }
+      }
+    },
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "name": "Fantasy Game Weather"
+        }
+      }
+    }
+  }
+}
