@@ -82,7 +82,12 @@
                   "name":{
                     "value": "gridania",
                     "synonyms": ["new gridania", "old gridania"]
-                    }
+                    },
+                    "id": "ULDAH",
+                    "name":{
+                      "value": "uldah",
+                      "synonyms": ["uldah steps of nald", "udlah steps of thal", "steps of thal","steps of nald"]
+                      }
                   }
                 ]
               }
