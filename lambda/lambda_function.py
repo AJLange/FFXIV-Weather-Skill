@@ -84,7 +84,7 @@ class GetForecastIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return (is_request_type("LaunchRequest")(handler_input) or
-                is_intent_name("GetNewServerIntent")(handler_input))
+                is_intent_name("GetForecastIntent")(handler_input))
 
 
     def handle(self, handler_input):
