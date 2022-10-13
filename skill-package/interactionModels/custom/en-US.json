@@ -50,7 +50,7 @@
                     }
                   ],
                   "samples": [
-                    "what will the weather be like in {WeatherLocation}?",
+                    "what will the weather be like in {WeatherLocation}",
                     "tell me the forecast for {WeatherLocation}",
                     "is it {WeatherType} in {WeatherLocation}",
                     "what is the weather in {WeatherLocation}"
