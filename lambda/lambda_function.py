@@ -40,6 +40,7 @@ class GetDataApiHandler(AbstractRequestHandler):
 
 class GetServerNameHandler(AbstractRequestHandler):
     '''let's get the name of a server from the list eventually API'''
+    '''test'''
 
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
