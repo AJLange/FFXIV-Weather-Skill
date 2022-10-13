@@ -1,95 +1,39 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "sky watcher",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "HelloWorldIntent",
-          "slots": [],
-          "samples": [
-            "hello",
-            "how are you",
-            "say hi world",
-            "say hi",
-            "hi",
-            "say hello world",
-            "say hello"
-          ]
-        },
-        {
-          "name": "GetNewServerIntent",
-          "slots": [],
-          "samples": [
-            "name a server",
-            "get a random server",
-            "tell me about a server"
-          ]
-        },
-        {
-          "name": "GetForecastIntent",
-          "slots": [
-            {
-              "name": "WeatherType",
-              "type": "WEATHER_TYPE"
-            },
-            {
-              "name": "WeatherLocation",
-              "type": "WEATHER_LOCATION"
-            }
-          ],
-          "samples": [
-            "what will the weather be like in {WeatherLocation}?",
-            "tell me the forecast for {WeatherLocation}",
-            "is it {WeatherType} in {WeatherLocation}",
-            "what is the weather in {WeatherLocation}"
-          ]
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
-        }
-      ],
-      "types": [
-        {
-          "name":"WEATHER_TYPE",
-          "values": [
-            {
-            "id": "RAIN",
-            "name":{
-              "value": "rain",
-              "synonyms": ["shower","storm","raining"]
-              }
-            },
-            {
-              "id": "SNOW",
-              "name":{
-                "value": "snow",
-                "synonyms": ["blizzard","flurries"]
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "sky watcher",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "HelloWorldIntent",
+                    "slots": [],
+                    "samples": [
+                        "hello",
+                        "how are you",
+                        "say hi world",
+                        "say hi",
+                        "hi",
+                        "say hello world",
+                        "say hello"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
                 }
-              }
-            ]
-            
-        },
-        {
-          "name":"WEATHER_LOCATION",
-          "values":[
-            {}
-          ]
+            ],
+            "types": []
         }
-        ]
-      }
-    },
-  "version": "1"
+    }
 }
