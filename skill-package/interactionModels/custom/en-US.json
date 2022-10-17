@@ -1,97 +1,295 @@
 {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "sky watcher",
-            "intents": [
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
-                    "name": "HelloWorldIntent",
-                    "slots": [],
-                    "samples": [
-                        "hello",
-                        "how are you",
-                        "say hi world",
-                        "say hi",
-                        "hi",
-                        "say hello world",
-                        "say hello"
-                    ]
-                },
-                {
+  "interactionModel": {
+      "languageModel": {
+          "invocationName": "sky watcher",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "HelloWorldIntent",
+                  "slots": [],
+                  "samples": [
+                      "hello",
+                      "how are you",
+                      "say hi world",
+                      "say hi",
+                      "hi",
+                      "say hello world",
+                      "say hello"
+                  ]
+              },
+              {
                   "name": "GetNewServerIntent",
                   "slots": [],
                   "samples": [
-                    "name a server",
-                    "get a random server",
-                    "tell me about a server"
+                      "name a server",
+                      "get a random server",
+                      "tell me about a server"
                   ]
-                },
-                {
-                  "name": "GetForecastIntent",
-                  "slots": [
-                    {
-                      "name": "WeatherType",
-                      "type": "WEATHER_TYPE"
-                    },
-                    {
-                      "name": "WeatherLocation",
-                      "type": "WEATHER_LOCATION"
-                    }
-                  ],
-                  "samples": [
-                    "what will the weather be like in {WeatherLocation}",
-                    "tell me the forecast for {WeatherLocation}",
-                    "is it {WeatherType} in {WeatherLocation}",
-                    "what is the weather in {WeatherLocation}"
-                  ]
-                },
-                {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
-                }
-            ],
-            "types": [
-              {
-                "name":"WEATHER_TYPE",
-                "values": [
-                  {
-                  "id": "RAIN",
-                  "name":{
-                    "value": "rain",
-                    "synonyms": ["shower","storm","raining"]
-                    }
-                  }
-                ]
               },
               {
-                "name":"WEATHER_LOCATION",
-                "values": [
-                  {
-                  "id": "GRIDANIA",
-                  "name":{
-                    "value": "gridania",
-                    "synonyms": ["new gridania", "old gridania"]
-                    },
-                    "id": "ULDAH",
-                    "name":{
-                      "value": "uldah",
-                      "synonyms": ["uldah steps of nald", "udlah steps of thal", "steps of thal","steps of nald"]
+                  "name": "GetForecastIntent",
+                  "slots": [
+                      {
+                          "name": "WeatherType",
+                          "type": "WEATHER_TYPE"
+                      },
+                      {
+                          "name": "WeatherLocation",
+                          "type": "WEATHER_LOCATION"
                       }
-                  }
-                ]
+                  ],
+                  "samples": [
+                      "what will the weather be like in {WeatherLocation}",
+                      "tell me the forecast for {WeatherLocation}",
+                      "is it {WeatherType} in {WeatherLocation}",
+                      "what is the weather in {WeatherLocation}"
+                  ]
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
               }
-            ]
-        }
-    }
+          ],
+          "types": [
+              {
+                  "name": "WEATHER_TYPE",
+                  "values": [
+                      {
+                          "id": "UMBRALW",
+                          "name": {
+                              "value": "umbral wind"
+                          }
+                      },
+                      {
+                          "id": "STATIC",
+                          "name": {
+                              "value": "umbral static"
+                          }
+                      },
+                      {
+                          "id": "WIND",
+                          "name": {
+                              "value": "windy",
+                              "synonyms": [
+                                  "wind",
+                                  "wimdy"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "STORMS",
+                          "name": {
+                              "value": "thunderstorms",
+                              "synonyms": [
+                                  "thunderstorm",
+                                  "stormy",
+                                  "lightning",
+                                  "heavy thunder"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "THUNDER",
+                          "name": {
+                              "value": "thunder",
+                              "synonyms": [
+                                  "heat lightning"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "PROJECTION",
+                          "name": {
+                              "value": "projection",
+                              "synonyms": [
+                                  "projected"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "MOON",
+                          "name": {
+                              "value": "moon dust",
+                              "synonyms": [
+                                  "lunar",
+                                  "the moon",
+                                  "regolithic"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "HEAT",
+                          "name": {
+                              "value": "heat wave",
+                              "synonyms": [
+                                  "heat waves",
+                                  "blistering"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "GALES",
+                          "name": {
+                              "value": "gales",
+                              "synonyms": [
+                                  "gusts",
+                                  "gusty"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "GLOOM",
+                          "name": {
+                              "value": "gloom",
+                              "synonyms": [
+                                  "spooky",
+                                  "gloomy"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "FOG",
+                          "name": {
+                              "value": "fog",
+                              "synonyms": [
+                                  "misty",
+                                  "foggy"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "FAIR",
+                          "name": {
+                              "value": "fair",
+                              "synonyms": [
+                                  "fair skies"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "CLOUDS",
+                          "name": {
+                              "value": "clouds",
+                              "synonyms": [
+                                  "partly cloudy",
+                                  "overcast",
+                                  "cloudy"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "BLIZZARD",
+                          "name": {
+                              "value": "blizzzard",
+                              "synonyms": [
+                                  "heavy snow",
+                                  "whiteout"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "APOCOLYPSE",
+                          "name": {
+                              "value": "apocolypse",
+                              "synonyms": [
+                                  "apocolyptic"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "ASTRO",
+                          "name": {
+                              "value": "astromagnetic storm",
+                              "synonyms": [
+                                  "void",
+                                  "space",
+                                  "space storm",
+                                  "astromagnetic"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "CLEAR",
+                          "name": {
+                              "value": "clear",
+                              "synonyms": [
+                                  "sunny"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "SHOWER",
+                          "name": {
+                              "value": "showers",
+                              "synonyms": [
+                                  "downpour",
+                                  "squall",
+                                  "heavy rain",
+                                  "hard rain"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "SNOW",
+                          "name": {
+                              "value": "snow",
+                              "synonyms": [
+                                  "snowy",
+                                  "flurry"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "RAIN",
+                          "name": {
+                              "value": "rain",
+                              "synonyms": [
+                                  "rainy",
+                                  "raining"
+                              ]
+                          }
+                      }
+                  ]
+              },
+              {
+                  "name": "WEATHER_LOCATION",
+                  "values": [
+                      {
+                          "id": "GRIDANIA",
+                          "name": {
+                              "value": "gridania",
+                              "synonyms": [
+                                  "new gridania",
+                                  "old gridania"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "ULDAH",
+                          "name": {
+                              "value": "uldah",
+                              "synonyms": [
+                                  "uldah steps of nald",
+                                  "udlah steps of thal",
+                                  "steps of thal",
+                                  "steps of nald"
+                              ]
+                          }
+                      }
+                  ]
+              }
+          ]
+      }
+  }
 }
