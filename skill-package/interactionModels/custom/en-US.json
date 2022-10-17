@@ -66,6 +66,16 @@
                   "name": "WEATHER_TYPE",
                   "values": [
                       {
+                          "id": "DUST",
+                          "name": {
+                              "value": "dust storms",
+                              "synonyms": [
+                                  "duststorms",
+                                  "dusty"
+                              ]
+                          }
+                      },
+                      {
                           "id": "UMBRALW",
                           "name": {
                               "value": "umbral wind"
@@ -265,6 +275,265 @@
               {
                   "name": "WEATHER_LOCATION",
                   "values": [
+                      {
+                          "id": "NORTH_THANLAN",
+                          "name": {
+                              "value": "northern thanlan",
+                              "synonyms": [
+                                  "ceruleum field",
+                                  "ceruleum processing plant",
+                                  "raubahn's push",
+                                  "castrum meridianum",
+                                  "bluefog",
+                                  "camp bluefog"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "SOUTH_THANLAN",
+                          "name": {
+                              "value": "southern thanlan",
+                              "synonyms": [
+                                  "zaharak",
+                                  "zanrak",
+                                  "sagolii desert",
+                                  "sagoli",
+                                  "forgotten springs",
+                                  "little ala mhigo",
+                                  "broken water"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "EAST_THANLAN",
+                          "name": {
+                              "value": "eastern thanlan",
+                              "synonyms": [
+                                  "burning wall",
+                                  "wellwick wood",
+                                  "wellwick",
+                                  "sandgate",
+                                  "drybone",
+                                  "camp drybone"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "CENTER_THANLAN",
+                          "name": {
+                              "value": "central thanlan",
+                              "synonyms": [
+                                  "black brush station",
+                                  "black brush",
+                                  "coffer and coin",
+                                  "spineless basin",
+                                  "clutch"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "GOBLET",
+                          "name": {
+                              "value": "the goblet"
+                          }
+                      },
+                      {
+                          "id": "WEST_THANLAN",
+                          "name": {
+                              "value": "western thanlan",
+                              "synonyms": [
+                                  "silver bazaar",
+                                  "hammerlea",
+                                  "the eighty sins of sasamo",
+                                  "the eighty sins",
+                                  "horizon's edge",
+                                  "cape westwind",
+                                  "footfalls",
+                                  "the footfalls",
+                                  "the waking sands",
+                                  "waking sands",
+                                  "horizon"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "NORTH_SHROUD",
+                          "name": {
+                              "value": "north shroud",
+                              "synonyms": [
+                                  "hyrstmill",
+                                  "alder springs",
+                                  "peacegarden",
+                                  "proud creek",
+                                  "treespeak",
+                                  "fallgourd float",
+                                  "fallgourd"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "BEDS",
+                          "name": {
+                              "value": "lavender beds"
+                          }
+                      },
+                      {
+                          "id": "SOUTH_SHROUD",
+                          "name": {
+                              "value": "south shroud",
+                              "synonyms": [
+                                  "urths gift",
+                                  "camp tranquil",
+                                  "silent arbor",
+                                  "snakemolt",
+                                  "quarrymill"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "EAST_SHROUD",
+                          "name": {
+                              "value": "east shroud",
+                              "synonyms": [
+                                  "hawthorne hut",
+                                  "sanctum of the twelve",
+                                  "bramble patch",
+                                  "nine ivies",
+                                  "larkscall",
+                                  "sylphlands",
+                                  "sylph country"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "CENTER_SHROUD",
+                          "name": {
+                              "value": "central shroud",
+                              "synonyms": [
+                                  "blue badger gate",
+                                  "white wolf gate",
+                                  "the standing corses",
+                                  "sorrel haven",
+                                  "sorrel",
+                                  "bentbranch meadows",
+                                  "jadeite thick",
+                                  "greentear",
+                                  "bentbranch"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "WOLF",
+                          "name": {
+                              "value": "wolves den pier"
+                          }
+                      },
+                      {
+                          "id": "OUT_NOSCEA",
+                          "name": {
+                              "value": "outer la noscea",
+                              "synonyms": [
+                                  "nym",
+                                  "kobold dig",
+                                  "camp overlook",
+                                  "iron lake",
+                                  "kobold country",
+                                  "u'ghamaro mines",
+                                  "long climb"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "UP_NOSCEA",
+                          "name": {
+                              "value": "upper la noscea",
+                              "synonyms": [
+                                  "zelmas run",
+                                  "jijiroon's trading post",
+                                  "jijiroon's post",
+                                  "memeroon's trading post",
+                                  "memeroon's post",
+                                  "oakwood",
+                                  "camp bronze lake",
+                                  "bronze lake"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "WEST_NOSCEA",
+                          "name": {
+                              "value": "western la noscea",
+                              "synonyms": [
+                                  "isles of umbra",
+                                  "sansa spawning grounds",
+                                  "sansa",
+                                  "halfstone",
+                                  "skull valley",
+                                  "swiftperch",
+                                  "quarterstone",
+                                  "aleport"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "EAST_NOSCEA",
+                          "name": {
+                              "value": "eastern la noscea",
+                              "synonyms": [
+                                  "hidden falls",
+                                  "wineport",
+                                  "raincatcher gully",
+                                  "costa del sol",
+                                  "bloodshore"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "MIST",
+                          "name": {
+                              "value": "mist"
+                          }
+                      },
+                      {
+                          "id": "LOW_NOSCEA",
+                          "name": {
+                              "value": "lower la noscea",
+                              "synonyms": [
+                                  "gods grip",
+                                  "cedarwood",
+                                  "moraby",
+                                  "moraby bay",
+                                  "drydocks",
+                                  "moraby drydocks"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "MID_NOSCEA",
+                          "name": {
+                              "value": "middle la noscea",
+                              "synonyms": [
+                                  "three-malm bend",
+                                  "zephyr drift",
+                                  "summerford farms",
+                                  "summerford"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "LIMSA",
+                          "name": {
+                              "value": "limsa lominsa",
+                              "synonyms": [
+                                  "limsa decks",
+                                  "limsa",
+                                  "limsa lominsa lower decks",
+                                  "limsa lominsa upper decks",
+                                  "lower decks",
+                                  "upper decks"
+                              ]
+                          }
+                      },
                       {
                           "id": "GRIDANIA",
                           "name": {
