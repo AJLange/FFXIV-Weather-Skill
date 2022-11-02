@@ -14,6 +14,7 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
 
 import utils
+import weather_data
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -37,29 +38,6 @@ class GetDataApiHandler(AbstractRequestHandler):
         }
 
         return response
-
-class GetServerNameHandler(AbstractRequestHandler):
-    '''let's get the name of a server from the list eventually API'''
-    '''test'''
-
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return (is_request_type("LaunchRequest")(handler_input) or
-                is_intent_name("GetNewServerIntent")(handler_input))
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        logger.info("In GetServerNameHandler")
-
-        # get localization data
-        data = handler_input.attributes_manager.request_attributes["_"]
-
-        random_fact = random.choice(data[prompts.FACTS])
-        speech = data[prompts.GET_FACT_MESSAGE].format(random_fact)
-
-        handler_input.response_builder.speak(speech).set_card(
-            SimpleCard(data[prompts.SKILL_NAME], random_fact))
-        return handler_input.response_builder.response
 
 class GetServerNameHandler(AbstractRequestHandler):
     '''let's get the name of a server from the list to test data connection'''
@@ -166,6 +144,33 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech)
         return handler_input.response_builder.response
 
+
+class GetWeatherDataHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+
+        return utils.isApiRequest(handler_input, 'GetWeatherInfo')
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        cityNameWithId = utils.getCityNameWithIdFromApiRequestSlots(handler_input)
+
+        if not cityNameWithId:
+            # We couldn't match this city value to our slot, we'll return empty and let the response template handle it.
+            return {'apiResponse': {}}
+
+        # "Call a service" to get the weather for this location and date.
+        weather = weather_data.getWeather(cityNameWithId.id)
+
+        response = {
+            'apiResponse': {
+                'cityName': cityNameWithId.name,
+                'weather': weather
+            }
+        }
+
+        return response
+
 class FallbackIntentHandler(AbstractRequestHandler):
     """Handler for Fallback Intent.
     AMAZON.FallbackIntent is only available in en-US locale.
@@ -257,6 +262,8 @@ sb.add_request_handler(GetForecastIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
 sb.add_request_handler(IntentReflectorHandler())
+sb.add_request_handler(GetWeatherDataHandler())
+
 
 # register exception handlers
 sb.add_exception_handler(CatchAllExceptionHandler())
