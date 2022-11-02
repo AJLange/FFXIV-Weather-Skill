@@ -86,21 +86,6 @@ sb = SkillBuilder()
 sb.add_request_handler(GetDataApiHandler())
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
-sb.add_request_handler(SessionEndedRequestHandler())
-sb.add_request_handler(HelpIntentHandler())
-sb.add_request_handler(GetServerNameHandler())
-sb.add_request_handler(GetForecastIntentHandler())
-sb.add_request_handler(CancelOrStopIntentHandler())
-sb.add_request_handler(FallbackIntentHandler())
-sb.add_request_handler(IntentReflectorHandler())
-sb.add_request_handler(GetWeatherDataHandler())
 
-
-# register exception handlers
-sb.add_exception_handler(CatchAllExceptionHandler())
-
-# register interceptors
-sb.add_global_request_interceptor(LoggingRequestInterceptor())
-sb.add_global_response_interceptor(LoggingResponseInterceptor())
 
 lambda_handler = sb.lambda_handler()
