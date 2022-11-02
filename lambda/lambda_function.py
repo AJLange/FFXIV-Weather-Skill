@@ -20,24 +20,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-class HelloWorldIntentHandler(AbstractRequestHandler):
-
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-
-        return ask_utils.is_request_type("LaunchRequest")(handler_input)
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        speak_output = "Hello! This is the Skywatcher. You can ask me for the weather!"
-
-        return (
-            handler_input.response_builder
-                .speak(speak_output)
-                # .ask(speak_output)
-                .response
-        )
-
 class LaunchRequestHandler(AbstractRequestHandler):
 
     def can_handle(self, handler_input):
@@ -87,8 +69,7 @@ class GetForecastIntentHandler(AbstractRequestHandler):
 
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return (is_request_type("LaunchRequest")(handler_input) or
-                is_intent_name("GetForecastIntent")(handler_input))
+        return (is_intent_name("GetForecastIntent")(handler_input))
 
 
     def handle(self, handler_input):
@@ -104,6 +85,25 @@ class GetForecastIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech).set_card(
             SimpleCard(data[prompts.SKILL_NAME], my_forecast))
         return handler_input.response_builder.response
+
+
+class HelpIntentHandler(AbstractRequestHandler):
+    """Handler for Help Intent."""
+
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+
+        return is_intent_name("AMAZON.HelpIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Thanks for asking for help. This is the help intent handler."
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask(speak_output)
+                .response
 
 
 class FallbackIntentHandler(AbstractRequestHandler):
@@ -189,9 +189,8 @@ sb = SkillBuilder()
 # register request / intent handlers
 
 sb.add_request_handler(LaunchRequestHandler())
-sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(GetForecastIntentHandler())
-
+sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 
