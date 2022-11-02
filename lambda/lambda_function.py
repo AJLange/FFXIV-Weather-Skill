@@ -20,6 +20,42 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
+class HelloWorldIntentHandler(AbstractRequestHandler):
+
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+
+        return ask_utils.is_request_type("LaunchRequest")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Hello! This is the Skywatcher. You can ask me for the weather!"
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask(speak_output)
+                .response
+        )
+
+class LaunchRequestHandler(AbstractRequestHandler):
+
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+
+        return ask_utils.is_request_type("LaunchRequest")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Hello! This is the Skywatcher. You can ask me for the weather!"
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask(speak_output)
+                .response
+        )
+
 class GetDataApiHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -255,6 +291,8 @@ sb = SkillBuilder()
 
 # register request / intent handlers
 sb.add_request_handler(GetDataApiHandler())
+sb.add_request_handler(LaunchRequestHandler())
+sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(GetServerNameHandler())
