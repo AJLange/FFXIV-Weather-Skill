@@ -170,6 +170,54 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         )
 
 
+class CancelOrStopIntentHandler(AbstractRequestHandler):
+    """Single handler for Cancel and Stop Intent."""
+
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return (is_intent_name("AMAZON.CancelIntent")(handler_input) or
+                is_intent_name("AMAZON.StopIntent")(handler_input))
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        logger.info("In CancelOrStopIntentHandler")
+
+        # get localization data
+        data = handler_input.attributes_manager.request_attributes["_"]
+
+        speech = data[prompts.STOP_MESSAGE]
+        handler_input.response_builder.speak(speech)
+        return handler_input.response_builder.response
+
+
+class GetWeatherDataHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+
+        return utils.isApiRequest(handler_input, 'GetWeatherInfo')
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        cityNameWithId = utils.getCityNameWithIdFromApiRequestSlots(handler_input)
+
+        if not cityNameWithId:
+            # We couldn't match this city value to our slot, we'll return empty and let the response template handle it.
+            return {'apiResponse': {}}
+
+        # "Call a service" to get the weather for this location and date.
+        weather = weather_data.getWeather(cityNameWithId.id)
+
+        response = {
+            'apiResponse': {
+                'cityName': cityNameWithId.name,
+                'weather': weather
+            }
+        }
+
+        return response
+
+
+
 
 # *****************************************************************************
 # These simple interceptors just log the incoming and outgoing request bodies to assist in debugging.
@@ -193,6 +241,8 @@ sb.add_request_handler(GetForecastIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
+sb.add_request_handler(GetWeatherDataHandler())
+sb.add_request_handler(CancelOrStopIntentHandler())
 
 # register exception handlers
 sb.add_exception_handler(CatchAllExceptionHandler())
