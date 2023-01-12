@@ -9,7 +9,7 @@
               },
               {
                   "name": "AMAZON.HelpIntent",
-                  "samples": []
+                  "samples": ["help","ask for help","help me"]
               },
               {
                   "name": "AMAZON.StopIntent",
