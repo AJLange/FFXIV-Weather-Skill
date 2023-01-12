@@ -97,13 +97,11 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "The Sky Watcher is designed to help you find the weather in Final Fantasy Fourteen. You can ask for a forecast from any zone in A Realm Reborn for now. For example, try 'What's the weather like in Limsa Lominsa' or any Final Fantasy Fourteen city."
+        speech_text = "The Sky Watcher is designed to help you find the weather in Final Fantasy Fourteen. You can ask for a forecast from any zone in A Realm Reborn for now. For example, try 'What's the weather like in Limsa Lominsa' or any Final Fantasy Fourteen city."
 
-        return (
-            handler_input.response_builder
-                .speak(speak_output)
-                # .ask(speak_output)
-                .response)
+        handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(
+            SimpleCard("Hello World", speech_text))
+        return handler_input.response_builder.response
 
 
 class FallbackIntentHandler(AbstractRequestHandler):
@@ -126,8 +124,7 @@ class FallbackIntentHandler(AbstractRequestHandler):
 
         speech = data[prompts.FALLBACK_MESSAGE]
         reprompt = data[prompts.FALLBACK_REPROMPT]
-        handler_input.response_builder.speak(speech).ask(
-            reprompt)
+        handler_input.response_builder.speak(speech).ask(reprompt)
         return handler_input.response_builder.response
 
 
@@ -145,6 +142,21 @@ class SessionEndedRequestHandler(AbstractRequestHandler):
 
         return handler_input.response_builder.response
 
+class GetForecastIntent(AbstractRequestHandler):
+    """Handler for Help Intent."""
+
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+
+        return is_intent_name("GetForecastIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speech_text = "Just a check to see if this intent was hit. I think you're asking for a forecast."
+
+        handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(SimpleCard("Hello World", speech_text))
+        return handler_input.response_builder.response
+
 
 class CatchAllExceptionHandler(AbstractExceptionHandler):
     """Generic error handling to capture any syntax or routing errors. If you receive an error
@@ -160,7 +172,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         # type: (HandlerInput, Exception) -> Response
         logger.error(exception, exc_info=True)
 
-        speak_output = "Sorry, this is an error message! Custom error message!"
+        speak_output = "Sorry, this is an error message! You're hitting this error because an intent didn't fire correctly."
 
         return (
             handler_input.response_builder
@@ -171,25 +183,19 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 
 
 class CancelOrStopIntentHandler(AbstractRequestHandler):
-    """Single handler for Cancel and Stop Intent."""
-
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return (is_intent_name("AMAZON.CancelIntent")(handler_input) or
-                is_intent_name("AMAZON.StopIntent")(handler_input))
+        return is_intent_name("AMAZON.CancelIntent")(handler_input) or is_intent_name("AMAZON.StopIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("In CancelOrStopIntentHandler")
+        speech_text = "Goodbye!"
 
-        # get localization data
-        data = handler_input.attributes_manager.request_attributes["_"]
-
-        speech = data[prompts.STOP_MESSAGE]
-        handler_input.response_builder.speak(speech)
+        handler_input.response_builder.speak(speech_text).set_card(
+            SimpleCard("Hello World", speech_text)).set_should_end_session(True)
         return handler_input.response_builder.response
 
-'''
+
 class GetWeatherDataHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -216,7 +222,7 @@ class GetWeatherDataHandler(AbstractRequestHandler):
 
         return response
 
-'''
+
 
 
 # *****************************************************************************
@@ -242,7 +248,8 @@ sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
-#sb.add_request_handler(GetWeatherDataHandler())
+sb.add_request_handler(GetWeatherDataHandler())
+sb.add_request_handler(GetForecastIntent())
 
 # register exception handlers
 sb.add_exception_handler(CatchAllExceptionHandler())
