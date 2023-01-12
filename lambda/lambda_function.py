@@ -97,7 +97,7 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Thanks for asking for help. This is the help intent handler."
+        speak_output = "The Sky Watcher is designed to help you find the weather in Final Fantasy Fourteen. You can ask for a forecast from any zone in A Realm Reborn for now. For example, try 'What's the weather like in Limsa Lominsa' or any Final Fantasy Fourteen city."
 
         return (
             handler_input.response_builder
