@@ -38,7 +38,19 @@ class LaunchRequestHandler(AbstractRequestHandler):
                 .response
         )
 
+class HelloWorldIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return is_intent_name("HelloWorldIntent")(handler_input)
 
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speech_text = "You can successfully hit Hello World with this skill."
+
+        handler_input.response_builder.speak(speech_text).set_card(
+            SimpleCard("Hello World", speech_text)).set_should_end_session(
+            True)
+        return handler_input.response_builder.response
 
 class IntentReflectorHandler(AbstractRequestHandler):
     """The intent reflector is used for interaction model testing and debugging.
@@ -62,29 +74,6 @@ class IntentReflectorHandler(AbstractRequestHandler):
             # .ask("add a reprompt if you want to keep the session open for the user to respond")
             .response
         )
-
-
-class GetForecastIntentHandler(AbstractRequestHandler):
-    '''intent to get a weather forecast'''
-
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return (is_intent_name("GetForecastIntent")(handler_input))
-
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        logger.info("In GetForecastIntentHandler")
-
-        # get localization data
-        data = handler_input.attributes_manager.request_attributes["_"]
-
-        my_forecast = random.choice(data[prompts.WEATHER])
-        speech = data[prompts.GET_WEATHER].format(my_forecast)
-
-        handler_input.response_builder.speak(speech).set_card(
-            SimpleCard(data[prompts.SKILL_NAME], my_forecast))
-        return handler_input.response_builder.response
 
 
 class HelpIntentHandler(AbstractRequestHandler):
@@ -142,7 +131,7 @@ class SessionEndedRequestHandler(AbstractRequestHandler):
 
         return handler_input.response_builder.response
 
-class GetForecastIntent(AbstractRequestHandler):
+class GetForecastIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
 
     def can_handle(self, handler_input):
@@ -157,7 +146,7 @@ class GetForecastIntent(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(SimpleCard("Hello World", speech_text))
         return handler_input.response_builder.response
 
-'''
+
 class CatchAllExceptionHandler(AbstractExceptionHandler):
     """Generic error handling to capture any syntax or routing errors. If you receive an error
     stating the request handler chain is not found, you have not implemented a handler for
@@ -180,7 +169,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
             .ask(speak_output)
             .response
         )
-'''
+
 
 class CancelOrStopIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -243,16 +232,16 @@ sb = SkillBuilder()
 # register request / intent handlers
 
 sb.add_request_handler(LaunchRequestHandler())
-sb.add_request_handler(GetForecastIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(GetWeatherDataHandler())
-sb.add_request_handler(GetForecastIntent())
+sb.add_request_handler(GetForecastIntentHandler())
+sb.add_request_handler(HelloWorldIntentHandler())
 
 # register exception handlers
-'''sb.add_exception_handler(CatchAllExceptionHandler())'''
+sb.add_exception_handler(CatchAllExceptionHandler())
 
 # register interceptors
 sb.add_global_request_interceptor(LoggingRequestInterceptor())
