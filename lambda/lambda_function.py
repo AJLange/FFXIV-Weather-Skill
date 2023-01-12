@@ -157,7 +157,7 @@ class GetForecastIntent(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(SimpleCard("Hello World", speech_text))
         return handler_input.response_builder.response
 
-
+'''
 class CatchAllExceptionHandler(AbstractExceptionHandler):
     """Generic error handling to capture any syntax or routing errors. If you receive an error
     stating the request handler chain is not found, you have not implemented a handler for
@@ -180,7 +180,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
             .ask(speak_output)
             .response
         )
-
+'''
 
 class CancelOrStopIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -252,7 +252,7 @@ sb.add_request_handler(GetWeatherDataHandler())
 sb.add_request_handler(GetForecastIntent())
 
 # register exception handlers
-sb.add_exception_handler(CatchAllExceptionHandler())
+'''sb.add_exception_handler(CatchAllExceptionHandler())'''
 
 # register interceptors
 sb.add_global_request_interceptor(LoggingRequestInterceptor())
