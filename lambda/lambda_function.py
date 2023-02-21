@@ -40,6 +40,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
             handler_input.response_builder
                 .speak(speak_output)
                 # .ask(speak_output)
+                .set_should_end_session(False)
                 .response
         )
 
@@ -56,6 +57,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
             handler_input.response_builder
                 .speak(speak_output)
                 # .ask(speak_output)
+                .set_should_end_session(False)
                 .response
         )
 
@@ -78,6 +80,7 @@ class IntentReflectorHandler(AbstractRequestHandler):
         return (
             handler_input.response_builder
             .speak(speak_output)
+            .set_should_end_session(False)
             # .ask("add a reprompt if you want to keep the session open for the user to respond")
             .response
         )
@@ -133,10 +136,10 @@ class SessionEndedRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-
+        speak_output = "Thanks for checking in today! Good-bye and have fun!"
         # Any cleanup logic goes here.
 
-        return handler_input.response_builder.response
+        return handler_input.speak(speak_output).response_builder.set_should_end_session(True).response
 
 class GetForecastIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
