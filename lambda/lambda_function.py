@@ -123,8 +123,8 @@ class GetForecastIntentHandler(AbstractRequestHandler):
             handler_input.attributes_manager.session_attributes[location_slot_key] = my_location
 
             speech_text = ("It sounds like you want to get a forecast for the location {}".format(my_location))
-        else:
-            speech_text = ("I couldn't find the location you specified.")
+        #else:
+            #speech_text = ("I couldn't find the location you specified.")
 
         handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(
             SimpleCard("Weather Forecast", speech_text))
