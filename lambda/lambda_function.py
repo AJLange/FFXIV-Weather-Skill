@@ -39,7 +39,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                # .ask(speak_output)
+                #.ask(speak_output)
                 .set_should_end_session(False)
                 .response
         )
@@ -154,7 +154,13 @@ class GetForecastIntentHandler(AbstractRequestHandler):
         speech_text = "Just a check to see if this intent was hit. I think you're asking for a forecast."
 
         handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(SimpleCard("Hello World", speech_text))
-        return handler_input.response_builder.response
+        return (
+            handler_input.response_builder
+                .speak(speech_text)
+                .set_should_end_session(False)
+                .response
+        )
+
 
 
 class CatchAllExceptionHandler(AbstractExceptionHandler):
