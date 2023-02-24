@@ -113,7 +113,14 @@ class GetForecastIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = "It sounds like you want to get a forecast."
+        speech_text = "It sounds like you want to get a forecast for the location"
+        slots = handler_input.request_envelope.request.intent.slots
+        location = slots['WEATHER_LOCATION']
+        if location.value:
+            loc = location.value
+        else:
+            return 
+        speech_text = speech_text + str(loc)
 
         handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(
             SimpleCard("Hello World", speech_text))
