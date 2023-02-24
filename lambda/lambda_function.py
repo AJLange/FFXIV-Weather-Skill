@@ -23,7 +23,8 @@ import weather_data
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
+location_slot = "Location"
+location_slot_key = "LOCATION"
 
 class LaunchRequestHandler(AbstractRequestHandler):
 
@@ -106,6 +107,8 @@ class SessionEndedRequestHandler(AbstractRequestHandler):
 class GetForecastIntentHandler(AbstractRequestHandler):
     """Handler for GetForecast"""
 
+    
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
 
@@ -113,17 +116,21 @@ class GetForecastIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = "It sounds like you want to get a forecast for the location"
+
+        
+        
         slots = handler_input.request_envelope.request.intent.slots
-        location = slots['WEATHER_LOCATION']
-        if location.value:
-            loc = location.value
+        
+        if location_slot in slots:
+            my_location = slots[location_slot].value
+            handler_input.attributes_manager.session_attributes[location_slot_key] = my_location
+
+            speech_text = ("It sounds like you want to get a forecast for the location {}".format(my_location))
         else:
-            return 
-        speech_text = speech_text + str(loc)
+            speech_text = ("I couldn't find the location you specified.")
 
         handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(
-            SimpleCard("Hello World", speech_text))
+            SimpleCard("Weather Forecast", speech_text))
         return handler_input.response_builder.response
 
 
