@@ -23,7 +23,7 @@ import weather_data
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-location_slot = "location"
+location_slot = "WeatherLocation"
 location_slot_key = "WEATHER_LOCATION"
 
 class LaunchRequestHandler(AbstractRequestHandler):
