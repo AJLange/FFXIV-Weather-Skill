@@ -107,6 +107,7 @@ class SessionEndedRequestHandler(AbstractRequestHandler):
 class GetForecastIntentHandler(AbstractRequestHandler):
     """Handler for GetForecast"""
 
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
 
@@ -114,12 +115,10 @@ class GetForecastIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        
-        slots = handler_input.request_envelope.request.intent.slots
 
-        loc = slots['location'].value
+        slots = handler_input.request_envelope.request.intent.slots
         
-        if loc in slots:
+        if location_slot in slots:
             my_location = slots[location_slot].value
             handler_input.attributes_manager.session_attributes[location_slot_key] = my_location
 
