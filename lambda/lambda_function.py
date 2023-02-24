@@ -44,47 +44,6 @@ class LaunchRequestHandler(AbstractRequestHandler):
                 .response
         )
 
-class HelloWorldIntentHandler(AbstractRequestHandler):
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("HelloWorldIntent")(handler_input)
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        speak_output = "You can successfully hit Hello World with this skill."
-
-        return (
-            handler_input.response_builder
-                .speak(speak_output)
-                # .ask(speak_output)
-                .set_should_end_session(False)
-                .response
-        )
-
-class IntentReflectorHandler(AbstractRequestHandler):
-    """The intent reflector is used for interaction model testing and debugging.
-    It will simply repeat the intent the user said. You can create custom handlers
-    for your intents by defining them above, then also adding them to the request
-    handler chain below.
-    """
-
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return ask_utils.is_request_type("IntentRequest")(handler_input)
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        intent_name = ask_utils.get_intent_name(handler_input)
-        speak_output = "You just triggered " + intent_name + "."
-
-        return (
-            handler_input.response_builder
-            .speak(speak_output)
-            .set_should_end_session(False)
-            # .ask("add a reprompt if you want to keep the session open for the user to respond")
-            .response
-        )
-
 
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
@@ -141,8 +100,11 @@ class SessionEndedRequestHandler(AbstractRequestHandler):
 
         return handler_input.speak(speak_output).response_builder.set_should_end_session(True).response
 
+
+
+
 class GetForecastIntentHandler(AbstractRequestHandler):
-    """Handler for Help Intent."""
+    """Handler for GetForecast"""
 
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -151,10 +113,11 @@ class GetForecastIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = "Just a check to see if this intent was hit. I think you're asking for a forecast."
+        speech_text = "It sounds like you want to get a forecast."
 
-        return handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(SimpleCard("Weather!", speech_text))
-
+        handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(
+            SimpleCard("Hello World", speech_text))
+        return handler_input.response_builder.response
 
 
 class CatchAllExceptionHandler(AbstractExceptionHandler):
@@ -221,7 +184,29 @@ class GetWeatherDataHandler(AbstractRequestHandler):
 
         return response
 
+class IntentReflectorHandler(AbstractRequestHandler):
+    """The intent reflector is used for interaction model testing and debugging.
+    It will simply repeat the intent the user said. You can create custom handlers
+    for your intents by defining them above, then also adding them to the request
+    handler chain below.
+    """
 
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_request_type("IntentRequest")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        intent_name = ask_utils.get_intent_name(handler_input)
+        speak_output = "You just triggered " + intent_name + "."
+
+        return (
+            handler_input.response_builder
+            .speak(speak_output)
+            .set_should_end_session(False)
+            # .ask("add a reprompt if you want to keep the session open for the user to respond")
+            .response
+        )
 
 
 # *****************************************************************************
@@ -246,10 +231,8 @@ sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
-sb.add_request_handler(GetWeatherDataHandler())
 sb.add_request_handler(GetForecastIntentHandler())
-sb.add_request_handler(HelloWorldIntentHandler())
-
+sb.add_request_handler(IntentReflectorHandler())
 # register exception handlers
 sb.add_exception_handler(CatchAllExceptionHandler())
 
