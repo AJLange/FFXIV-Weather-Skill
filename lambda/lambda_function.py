@@ -25,6 +25,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 location_slot = "WeatherLocation"
 location_slot_key = "WEATHER_LOCATION"
+weather_type_slot = "WeatherType"
+weather_type_slot_key = "WEATHER_TYPE"
 
 class LaunchRequestHandler(AbstractRequestHandler):
 
